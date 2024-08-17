@@ -1,1 +1,23 @@
 schema-version: 1.0
+type: builder
+
+
+var:
+  version: 1.6.42
+
+builders:
+  - zlib
+
+provision:
+  - url:
+      from: https://downloads.sourceforge.net/libpng/libpng-{{ .version }}.tar.xz
+      todir: "{{ .xbee.src }}"
+      wget: true
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix=/usr --disable-static
+        - make
+        - make install DESTDIR={{ .xbee.out }}
+      directory:  "{{ .xbee.src }}/libpng-{{ .version }}"
