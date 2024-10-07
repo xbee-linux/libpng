@@ -1,12 +1,9 @@
 schema-version: 1.0
-type: builder
-
 
 var:
   version: 1.6.42
 
-builders:
-  - zlib
+builder: zlib
 
 provision:
   - url:
